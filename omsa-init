@@ -1,0 +1,16 @@
+#!/bin/sh
+
+
+if ! /etc/init.d/dsm_om_connsvc start; then
+  echo "Couldn't start dsm_om_connsvc. Exiting."
+  exit 1
+fi
+
+echo "OMSA running. Browse to port 1311 via https to connect."
+
+while :; do
+  if ! pgrep dsm_om_connsvcd > /dev/null; then
+    echo "dsm_om_connsvc not running. Exiting."
+    exit 1
+  fi
+done
