@@ -1,7 +1,9 @@
 #!/bin/sh
 
 
-if ! /etc/init.d/dsm_om_connsvc start; then
+export LD_LIBRARY_PATH=$(/opt/dell/srvadmin/sbin/dsm_om_connsvc-helper)
+
+if ! /opt/dell/srvadmin/sbin/dsm_om_connsvcd -run; then
   echo "Couldn't start dsm_om_connsvc. Exiting."
   exit 1
 fi
